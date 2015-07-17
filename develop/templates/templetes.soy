@@ -1,0 +1,123 @@
+{namespace ocean.onlineAI.OnlineAI.templates}
+/**
+ * OnlineAI mapBlock.
+ */
+{template .mapBlock}
+<div class="mapBlock"></div>
+{/template}
+/**
+ * OnlineAI mapArea.
+ */
+{template .mapArea}
+<div class="mapArea"></div>
+{/template}
+/** 
+ * OnlineAI selectInput.
+ */
+{template .selectInput}
+<div class="editbox">
+  <select class="editboxselect"></select>
+  <input type="text" class="editboxinput" />
+</div>
+{/template}
+/** 
+ * OnlineAI selectInputV.
+ */
+{template .selectInputV}
+<div class="editbox">
+  <select class="editboxselect cellAttrv">
+    <option>横坐标</option>
+    <option>纵坐标</option>
+    <option>方向</option>
+    <option>速度</option>
+    <option>可穿透</option>
+    <option>状态</option>
+    <option>属于</option>
+    <option>形状</option> 
+    <option></option> 
+    <option>绝对值</option> 
+  </select>
+  <input type="text" class="editboxinput" />
+</div>
+{/template}
+/**
+  * OnlineAI cellAttr.
+  */
+{template .cellAttr}
+<div class="cellAttr">
+  <select class="cellAttro">
+    <option>任意</option>
+    <option>任意2</option>
+    <option>同一</option>
+    <option>同一2</option>
+    <option>结果</option>
+    <option></option>
+  </select>
+</div>
+{/template}
+/**
+  * OnlineAI operation.
+  */
+{template .operation}
+<div class="operation">
+  <select>
+    <option>无</option>
+    <option>大于</option>
+    <option>小于</option>
+    <option>等于</option>
+    <option>不等于</option>
+    <option>大于等于</option>
+    <option>小于等于</option>
+    <option>减去</option>
+    <option>加上</option>
+    <option>乘以</option>
+    <option>除以</option>
+  </select>
+</div>
+{/template}
+/**
+  * OnlineAI actionList.
+  */
+{template .actionList}
+<select class="actionList">
+  <option>无事</option>
+  <option>移动</option>
+  <option>向上移动</option>
+  <option>向下移动</option>
+  <option>向左移动</option>
+  <option>向右移动</option>
+  <option>创建</option>
+  <option>消除</option>
+  <option>交换</option>
+  <option>数值增加</option>
+  <option>数值减少</option>
+  <option>改变属性</option>
+  <option>结束游戏</option>
+  <option>到达</option>
+  <option>执行</option>
+  <option>结束事件</option>
+</select>
+{/template}
+/**
+  * OnlineAI startAndEnd.
+  */
+{template .startAndEnd}
+<select class="startAndEnd">
+  <option>开始</option>
+  <option>结束</option>
+</select>
+{/template}
+/**
+  * OnlineAI logic.
+  */
+{template .logic}
+<div class="logic">
+  <select>
+    <option>无</option>
+    <option>并且</option>
+    <option>或者</option>
+    <option>并且不是</option>
+    <option>或者不是</option>
+  </select>
+</div>
+{/template}
