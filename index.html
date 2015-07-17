@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta http-equiv="pragma" content="no-cache" />
-        <title></title>
+        <title>Daydayup</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -15,9 +15,52 @@
         <script src="js/jquery-1.11.2.min.js"></script>
     </head>
     <body>
-        <h1>Day day up!</h1>
-        
+        <header>
+            <div class="container">
+                <h1>Day day up</h1>
+                <p>IFE Daydayup 队 团队介绍 </p>
+            </div>
+        </header>
+        <div class="main-content header-fix">
+            <div class="container pages">
+                <div class="page active">
+                    <div class="center circle big team-logo">天天向上</div>
+                    <div class="center desc">
+                        <p>
+                            毛主席说，我们要好好学习，day day up~所以我们来啦~~
+                        </p>
+                        <p>
+                            我们分别来自南京、。。。。虽然我们现在很菜，但是我们会努力让自己强大起来哒！~握拳！
+                        </p>
+                    </div>
+                </div>
+                <div class="page">
+                    <div class="center circle big team-logo">天天</div>
+                    <div class="center desc">
+                        <p>
+                            我是来自南京的一名程序媛，是个研究僧~O(∩_∩)O~
+                        </p>
+                        <p>
+                            喜欢做前端的成就感~想学一些真正的本事~想做一些自己的东西~请多指教~
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="js/daydayup-0.1.0.js"></script>  
+        <script>
+            /*注册事件*/
+            var now = 0;
+            $('.pages').on('mousewheel', getDirect);
+            function getDirect(e) {
+                var page = $(this);
+                var delta = scrollFunc(e);
+                var next = now + delta;
+                setTimeout(function(){$('.pages').on('mousewheel', getDirect)},1500)
+            }//IE/Opera/Chrome/Safari
+            //$('.pages').on('mousewheel', getDirect);
 
-        <script src="js/daydayup-0.1.0.js"></script>        
+            
+        </script>      
     </body>
 </html>

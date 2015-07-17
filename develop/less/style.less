@@ -1,13 +1,111 @@
-@font: 'Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace';
+@font: "Microsoft YaHei";
+@base-color: #eaeaea;
+@base-color-title: #b5e853;
+@base-font-size: 1em;
+@circle-width-big: 160px;
 
 html {
-    color: #222;
-    font-size: 1em;
-    line-height: 1.4;
+    color: @base-color;
+    font-size: @base-font-size;
 }
 
 body {
-    background
+    background: #151515;
     line-height: 1.5;
     font-family: @font;
+    background-image: url("../res/imgs/bkg.png");
+}
+
+.full-screen {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.container {
+    width: 100%;
+    width: 90%;
+    max-width: 700px;
+    margin: 0 auto;
+    position: relative;
+    h2, h3, h4, h5 {
+        color: @base-color-title;
+        margin: 0;
+    }
+    
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    width: 100%;
+    padding-top: 40px;
+    color: @base-color-title;
+    border-bottom: 1px dashed @base-color-title;
+    background-image: url("../res/imgs/bkg.png");
+    h1 {
+        font-weight: 900;
+        margin-top: 0;
+    }
+    p {
+        color: @base-color - #555555;
+        margin: 10px 0 20px 0;
+    }
+}
+
+.header-fix {
+    padding-top: 155px;
+}
+
+.main-content {
+    .full-screen;
+    .pages {
+        display: block;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+        .page {
+            background-color: @base-color - #afafaf;
+            width: 100%；
+            height: 100%;
+            //.full-screen;
+            .center {
+                margin: auto;
+            }
+            .circle {
+                display: block;
+                @border-width: 5px;
+                border: @border-width solid @base-color-title; 
+                border-radius: @circle-width-big / 2 + @border-width;
+                background-image: url('../res/imgs/daydayup.jpg');
+                background-size: 100%;
+                background-repeat: no-repeat;
+                background-position-y: 40%;
+            }
+            .big {
+                width: @circle-width-big;
+                height: @circle-width-big;
+            }
+            .team-logo {
+                color: #f00;
+                text-align: center;
+                line-height: @circle-width-big + 105px;
+                font-size: @base-font-size + .4em;
+                margin-top: 10%;
+                margin-bottom: 5%;
+            }
+            .desc {
+                width: 65%;
+                font-size: @base-font-size + .1em;
+                line-height: @base-font-size + .3em;;
+            }
+        }
+        .active {
+
+        }
+    }
 }
