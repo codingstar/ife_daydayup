@@ -10,6 +10,9 @@ body {
   background-image: url("../res/imgs/bkg.png");
   overflow: hidden;
 }
+a {
+  text-decoration: none;
+}
 .full-screen {
   position: absolute;
   top: 0;
@@ -18,9 +21,9 @@ body {
   right: 0;
 }
 .container {
-  width: 100%;
+  height: 100%;
   width: 90%;
-  max-width: 700px;
+  max-width: 850px;
   margin: 0 auto;
   position: relative;
 }
@@ -128,4 +131,22 @@ header p {
 .main-content .show-3 {
   transform: translateY(-300%);
   -webkit-transform: translateY(-300%);
+}
+.main-content .ctr-points {
+  position: absolute;
+  top: 40%;
+  bottom: 40%;
+  right: 10px;
+}
+.main-content .ctr-points .point {
+  border: 1px solid #000;
+  width: 8px;
+  height: 8px;
+  border-radius: 4px;
+  margin: 5px 0;
+  cursor: pointer;
+}
+.main-content .ctr-points .point:hover,
+.main-content .ctr-points .selected {
+  background-color: #151515;
 }

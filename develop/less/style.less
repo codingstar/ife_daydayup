@@ -3,6 +3,7 @@
 @base-color-title: #b5e853;
 @base-font-size: 1em;
 @circle-width-big: 160px;
+@bg-color: #151515;
 
 html {
     color: @base-color;
@@ -11,11 +12,15 @@ html {
 }
 
 body {
-    background: #151515;
+    background: @bg-color;
     line-height: 1.5;
     font-family: @font;
     background-image: url("../res/imgs/bkg.png");
     overflow: hidden;
+}
+
+a {
+    text-decoration: none;
 }
 
 .full-screen {
@@ -27,9 +32,9 @@ body {
 }
 
 .container {
-    width: 100%;
+    height: 100%;
     width: 90%;
-    max-width: 700px;
+    max-width: 850px;
     margin: 0 auto;
     position: relative;
     h2, h3, h4, h5 {
@@ -135,5 +140,23 @@ header {
     .show(@id) {
         transform: translateY(-100% * @id);
         -webkit-transform: translateY(-100% * @id);
+    }
+    .ctr-points {
+        position: absolute;
+        top: 40%;
+        bottom: 40%;
+        right: 10px;
+        .point {
+            border: 1px solid #000;
+            width: 8px;
+            height: 8px;
+            border-radius: 4px;
+            margin: 5px 0;
+            cursor: pointer;
+        }
+        .point:hover, .selected {
+            background-color: @bg-color;
+        }
+        
     }
 }
