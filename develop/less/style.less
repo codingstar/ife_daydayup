@@ -7,6 +7,7 @@
 html {
     color: @base-color;
     font-size: @base-font-size;
+    overflow: hidden;
 }
 
 body {
@@ -14,6 +15,7 @@ body {
     line-height: 1.5;
     font-family: @font;
     background-image: url("../res/imgs/bkg.png");
+    overflow: hidden;
 }
 
 .full-screen {
@@ -67,11 +69,13 @@ header {
         display: block;
         height: 100%;
         position: relative;
-        overflow: hidden;
+        transition:transform 1s cubic-bezier(0.86,0,0.03,1);
+        -webkit-transition:-webkit-transform 1s cubic-bezier(0.86,0,0.03,1);
         .page {
             background-color: @base-color - #afafaf;
-            width: 100%；
-            height: 100%;
+            width: 100%;
+            height: 95%;
+            padding-top: 5%;
             //.full-screen;
             .center {
                 margin: auto;
@@ -98,14 +102,38 @@ header {
                 margin-top: 10%;
                 margin-bottom: 5%;
             }
+            .team-member {
+                font-color: @base-color + #111;
+                width: 50%;
+                text-align: center;
+                .name {
+                    font-size: @base-font-size + .3em;
+                }
+                .more-info {
+                    font-size: @base-font-size - .1em;
+                }
+            }
             .desc {
-                width: 65%;
+                width: 60%;
                 font-size: @base-font-size + .1em;
                 line-height: @base-font-size + .3em;;
             }
         }
-        .active {
-
-        }
+    }
+    .show-0 {
+        .show(0);
+    }
+    .show-1 {
+        .show(1);
+    }
+    .show-2 {
+        .show(2);
+    }
+    .show-3 {
+        .show(3);
+    }
+    .show(@id) {
+        transform: translateY(-100% * @id);
+        -webkit-transform: translateY(-100% * @id);
     }
 }

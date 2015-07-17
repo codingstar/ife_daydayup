@@ -22,8 +22,8 @@
             </div>
         </header>
         <div class="main-content header-fix">
-            <div class="container pages">
-                <div class="page active">
+            <div class="container pages show-0" id="mypage">
+                <div class="page">
                     <div class="center circle big team-logo">天天向上</div>
                     <div class="center desc">
                         <p>
@@ -34,14 +34,21 @@
                         </p>
                     </div>
                 </div>
-                <div class="page">
-                    <div class="center circle big team-logo">天天</div>
+                <div class="page"><!-- 每人对应一个page -->
+                    <div class="center circle big team-logo" style="background-image: url('res/imgs/tiantian.jpg');"></div>
+                    <div class="team-member center">
+                        <div class="name">天 天</div>
+                        <div class="more-info">codingyjt@gmail.com</div>
+                    </div>
                     <div class="center desc">
                         <p>
                             我是来自南京的一名程序媛，是个研究僧~O(∩_∩)O~
                         </p>
                         <p>
-                            喜欢做前端的成就感~想学一些真正的本事~想做一些自己的东西~请多指教~
+                            喜欢做前端的成就感~想学一些真正的本事~想做一些自己的东西~
+                        </p>
+                        <p>
+                            请多指教~~\(≧▽≦)/~
                         </p>
                     </div>
                 </div>
@@ -51,12 +58,26 @@
         <script>
             /*注册事件*/
             var now = 0;
-            $('.pages').on('mousewheel', getDirect);
+            var pages = document.getElementById("mypage");
+            pages.onmousewheel = getDirect;
+            // $('.pages').one('mousewheel', getDirect);
             function getDirect(e) {
                 var page = $(this);
                 var delta = scrollFunc(e);
                 var next = now + delta;
-                setTimeout(function(){$('.pages').on('mousewheel', getDirect)},1500)
+                if (next < 0) {
+                    next = $('.pages .page').length - 1;
+                }
+                if (next >= $('.pages .page').length)
+                    next = 0;
+                console.log(now +" to "+ next);
+                $(pages).removeClass(function() { return "show-"+now; });
+                $(pages).addClass(function() { return "show-"+next; });
+                        //.find('.page').eq(next).addClass('active');
+                setTimeout(function(){
+                    //$('.pages').one('mousewheel', getDirect)
+                },1500);
+                now = next;
             }//IE/Opera/Chrome/Safari
             //$('.pages').on('mousewheel', getDirect);
 

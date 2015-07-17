@@ -1,12 +1,14 @@
 html {
   color: #eaeaea;
   font-size: 1em;
+  overflow: hidden;
 }
 body {
   background: #151515;
   line-height: 1.5;
   font-family: "Microsoft YaHei";
   background-image: url("../res/imgs/bkg.png");
+  overflow: hidden;
 }
 .full-screen {
   position: absolute;
@@ -62,12 +64,14 @@ header p {
   display: block;
   height: 100%;
   position: relative;
-  overflow: hidden;
+  transition: transform 1s cubic-bezier(0.86, 0, 0.03, 1);
+  -webkit-transition: -webkit-transform 1s cubic-bezier(0.86, 0, 0.03, 1);
 }
 .main-content .pages .page {
   background-color: #3b3b3b;
-  width: 100%；
-            height: 100%;
+  width: 100%;
+  height: 95%;
+  padding-top: 5%;
 }
 .main-content .pages .page .center {
   margin: auto;
@@ -93,8 +97,35 @@ header p {
   margin-top: 10%;
   margin-bottom: 5%;
 }
+.main-content .pages .page .team-member {
+  font-color: #fbfbfb;
+  width: 50%;
+  text-align: center;
+}
+.main-content .pages .page .team-member .name {
+  font-size: 1.3em;
+}
+.main-content .pages .page .team-member .more-info {
+  font-size: 0.9em;
+}
 .main-content .pages .page .desc {
-  width: 65%;
+  width: 60%;
   font-size: 1.1em;
   line-height: 1.3em;
+}
+.main-content .show-0 {
+  transform: translateY(0%);
+  -webkit-transform: translateY(0%);
+}
+.main-content .show-1 {
+  transform: translateY(-100%);
+  -webkit-transform: translateY(-100%);
+}
+.main-content .show-2 {
+  transform: translateY(-200%);
+  -webkit-transform: translateY(-200%);
+}
+.main-content .show-3 {
+  transform: translateY(-300%);
+  -webkit-transform: translateY(-300%);
 }
