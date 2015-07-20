@@ -12,6 +12,7 @@ body {
 }
 a {
   text-decoration: none;
+  color: #eaeaea;
 }
 .full-screen {
   position: absolute;
@@ -34,27 +35,45 @@ a {
   color: #b5e853;
   margin: 0;
 }
+.right {
+  float: right;
+}
+.left {
+  float: left;
+}
 header {
   position: fixed;
   top: 0;
   left: 0;
   z-index: 1000;
   width: 100%;
-  padding-top: 40px;
   color: #b5e853;
   border-bottom: 1px dashed #b5e853;
   background-image: url("../res/imgs/bkg.png");
 }
-header h1 {
+header .title {
   font-weight: 900;
   margin-top: 0;
+  font-size: 2em;
+  display: inline-block;
 }
 header p {
   color: #959595;
   margin: 10px 0 20px 0;
 }
+header .header-nav {
+  list-style: none;
+  font-weight: 600;
+}
+header .header-nav li {
+  float: left;
+  margin: 0 10px;
+}
+header .header-nav .active {
+  color: #b5e853;
+}
 .header-fix {
-  padding-top: 155px;
+  padding-top: 115px;
 }
 .main-content {
   position: absolute;
@@ -66,15 +85,22 @@ header p {
 .main-content .pages {
   display: block;
   height: 100%;
-  position: relative;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   transition: transform 1s cubic-bezier(0.86, 0, 0.03, 1);
   -webkit-transition: -webkit-transform 1s cubic-bezier(0.86, 0, 0.03, 1);
 }
+.main-content .pages .page::after {
+  border: 1px solid;
+}
 .main-content .pages .page {
+  position: relative;
   background-color: #3b3b3b;
   width: 100%;
-  height: 95%;
-  padding-top: 5%;
+  height: 100%;
 }
 .main-content .pages .page .center {
   margin: auto;
@@ -97,13 +123,19 @@ header p {
   text-align: center;
   line-height: 265px;
   font-size: 1.4em;
-  margin-top: 10%;
-  margin-bottom: 5%;
+  position: absolute;
+  top: 100px;
+  left: 0;
+  right: 0;
 }
 .main-content .pages .page .team-member {
   font-color: #fbfbfb;
   width: 50%;
   text-align: center;
+  position: absolute;
+  top: 280px;
+  left: 0;
+  right: 0;
 }
 .main-content .pages .page .team-member .name {
   font-size: 1.3em;
@@ -112,6 +144,10 @@ header p {
   font-size: 0.9em;
 }
 .main-content .pages .page .desc {
+  position: absolute;
+  top: 340px;
+  left: 0;
+  right: 0;
   width: 60%;
   font-size: 1.1em;
   line-height: 1.3em;
