@@ -1,27 +1,29 @@
 @font: "Microsoft YaHei";
-@base-color: #eaeaea;
-@base-color-title: #b5e853;
+@hacker-base-color: #eaeaea;
+@hacker-base-color-title: #b5e853;
 @base-font-size: 1em;
 @circle-width-big: 160px;
 @bg-color: #151515;
 
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url('../fonts/glyphicons-halflings-regular.eot');
+  src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
+}
+
+.glyphicon {
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  font-family: 'Glyphicons Halflings';
+  -webkit-font-smoothing: antialiased;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+}
+
 html {
-    color: @base-color;
-    font-size: @base-font-size;
     overflow: hidden;
-}
-
-body {
-    background: @bg-color;
-    line-height: 1.5;
-    font-family: @font;
-    background-image: url("../res/imgs/bkg.png");
-    overflow: hidden;
-}
-
-a {
-    text-decoration: none;
-    color: @base-color;
 }
 
 .full-screen {
@@ -32,19 +34,6 @@ a {
     right: 0;
 }
 
-.container {
-    height: 100%;
-    width: 90%;
-    max-width: 850px;
-    margin: 0 auto;
-    position: relative;
-    h2, h3, h4, h5 {
-        color: @base-color-title;
-        margin: 0;
-    }
-    
-}
-
 .right {
     float: right;
 }
@@ -53,148 +42,176 @@ a {
     float: left;
 }
 
-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    width: 100%;
-    //padding-top: 40px;
-    color: @base-color-title;
-    border-bottom: 1px dashed @base-color-title;
+.hacker {
+    color: @hacker-base-color;
+    font-size: @base-font-size;
+    background: @bg-color;
+    line-height: 1.5;
+    font-family: @font;
     background-image: url("../res/imgs/bkg.png");
-    .title {
-        font-weight: 900;
-        margin-top: 0;
-        font-size: @base-font-size + 1em;
-        display: inline-block;
-    }
-    p {
-        color: @base-color - #555555;
-        margin: 10px 0 20px 0;
-    }
-    .header-nav {
-        list-style: none;
-        font-weight: 600;
-        li {
-            .left;
-            margin: 0 10px;
-        }
-        .active {
-            color: @base-color-title;
-        }
-    }
-}
-
-.header-fix {
-    padding-top: 115px;
-}
-
-.main-content {
-    .full-screen;
-    .pages {
-        display: block;
+    overflow: hidden;
+    .container {
         height: 100%;
+        width: 90%;
+        max-width: 850px;
+        margin: 0 auto;
+        position: relative;
+        h2, h3, h4, h5 {
+            color: @hacker-base-color-title;
+            margin: 0;
+        }
+    }
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        width: 100%;
+        //padding-top: 40px;
+        color: @hacker-base-color-title;
+        border-bottom: 1px dashed @hacker-base-color-title;
+        background-image: url("../res/imgs/bkg.png");
+        .title {
+            font-weight: 900;
+            margin-top: 0;
+            font-size: @base-font-size + 1em;
+            display: inline-block;
+        }
+        p {
+            color: @hacker-base-color - #555555;
+            margin: 10px 0 20px 0;
+        }
+        .header-nav {
+            list-style: none;
+            font-weight: 600;
+            li {
+                .left;
+                margin: 0 10px;
+            }
+            .active {
+                color: @hacker-base-color-title;
+            }
+        }
+    }
+
+    .header-fix {
+        padding-top: 115px;
+    }
+
+    .main-content {
         .full-screen;
-        //position: relative;
-        transition:transform 1s cubic-bezier(0.86,0,0.03,1);
-        -webkit-transition:-webkit-transform 1s cubic-bezier(0.86,0,0.03,1);
-        .page::after {
-            border: 1px solid;
-        }
-        .page {
-            position: relative;
-            background-color: @base-color - #afafaf;
-            width: 100%;
+        .pages {
+            display: block;
             height: 100%;
-            //padding-top: 14%;
-            .center {
-                margin: auto;
+            .full-screen;
+            //position: relative;
+            transition:transform 1s cubic-bezier(0.86,0,0.03,1);
+            -webkit-transition:-webkit-transform 1s cubic-bezier(0.86,0,0.03,1);
+            .page::after {
+                border: 1px solid;
             }
-            .circle {
-                display: block;
-                @border-width: 5px;
-                border: @border-width solid @base-color-title; 
-                border-radius: @circle-width-big / 2 + @border-width;
-                background-image: url('../res/imgs/daydayup.jpg');
-                background-size: 100%;
-                background-repeat: no-repeat;
-                background-position-y: 40%;
-            }
-            .big {
-                width: @circle-width-big;
-                height: @circle-width-big;
-            }
-            .team-logo {
-                color: #f00;
-                text-align: center;
-                line-height: @circle-width-big + 105px;
-                font-size: @base-font-size + .4em;
-                //margin-top: 10%;
-                //margin-bottom: 5%;
-                position: absolute;
-                top: 100px;
-                left: 0;
-                right: 0;
-            }
-            .team-member {
-                font-color: @base-color + #111;
-                width: 50%;
-                text-align: center;
-                position: absolute;
-                top: @circle-width-big + 120px;
-                left: 0;
-                right: 0;
-                .name {
-                    font-size: @base-font-size + .3em;
+            .page {
+                position: relative;
+                background-color: @hacker-base-color - #afafaf;
+                width: 100%;
+                height: 100%;
+                //padding-top: 14%;
+                .center {
+                    margin: auto;
                 }
-                .more-info {
-                    font-size: @base-font-size - .1em;
+                .circle {
+                    display: block;
+                    @border-width: 5px;
+                    border: @border-width solid @hacker-base-color-title; 
+                    border-radius: @circle-width-big / 2 + @border-width;
+                    background-image: url('../res/imgs/daydayup.jpg');
+                    background-size: 100%;
+                    background-repeat: no-repeat;
+                    background-position-y: 40%;
+                }
+                .big {
+                    width: @circle-width-big;
+                    height: @circle-width-big;
+                }
+                .team-logo {
+                    color: #f00;
+                    text-align: center;
+                    line-height: @circle-width-big + 105px;
+                    font-size: @base-font-size + .4em;
+                    //margin-top: 10%;
+                    //margin-bottom: 5%;
+                    position: absolute;
+                    top: 100px;
+                    left: 0;
+                    right: 0;
+                }
+                .team-member {
+                    font-color: @hacker-base-color + #111;
+                    width: 50%;
+                    text-align: center;
+                    position: absolute;
+                    top: @circle-width-big + 120px;
+                    left: 0;
+                    right: 0;
+                    .name {
+                        font-size: @base-font-size + .3em;
+                    }
+                    .more-info {
+                        font-size: @base-font-size - .1em;
+                    }
+                }
+                .desc {
+                    position: absolute;
+                    top: @circle-width-big + 180px;
+                    left: 0;
+                    right: 0;
+                    width: 60%;
+                    font-size: @base-font-size + .1em;
+                    line-height: @base-font-size + .3em;;
                 }
             }
-            .desc {
-                position: absolute;
-                top: @circle-width-big + 180px;
-                left: 0;
-                right: 0;
-                width: 60%;
-                font-size: @base-font-size + .1em;
-                line-height: @base-font-size + .3em;;
+        }
+        .show-0 {
+            .show(0);
+        }
+        .show-1 {
+            .show(1);
+        }
+        .show-2 {
+            .show(2);
+        }
+        .show-3 {
+            .show(3);
+        }
+        .show(@id) {
+            transform: translateY(-100% * @id);
+            -webkit-transform: translateY(-100% * @id);
+        }
+        .ctr-points {
+            position: absolute;
+            top: 40%;
+            bottom: 40%;
+            right: 10px;
+            .point {
+                border: 1px solid #000;
+                width: 8px;
+                height: 8px;
+                border-radius: 4px;
+                margin: 5px 0;
+                cursor: pointer;
             }
+            .point:hover, .selected {
+                background-color: @bg-color;
+            }
+
         }
     }
-    .show-0 {
-        .show(0);
-    }
-    .show-1 {
-        .show(1);
-    }
-    .show-2 {
-        .show(2);
-    }
-    .show-3 {
-        .show(3);
-    }
-    .show(@id) {
-        transform: translateY(-100% * @id);
-        -webkit-transform: translateY(-100% * @id);
-    }
-    .ctr-points {
-        position: absolute;
-        top: 40%;
-        bottom: 40%;
-        right: 10px;
-        .point {
-            border: 1px solid #000;
-            width: 8px;
-            height: 8px;
-            border-radius: 4px;
-            margin: 5px 0;
-            cursor: pointer;
-        }
-        .point:hover, .selected {
-            background-color: @bg-color;
-        }
-        
+    a {
+        color: @hacker-base-color;
     }
 }
+
+a {
+    text-decoration: none;
+}
+

@@ -1,0 +1,26 @@
+@base-title-bgcolor: #A6FFA6;
+@header-height: 45px;
+
+#wrapper {  
+    .full-screen;
+    z-index: 1;
+    overflow: scroll;
+} 
+
+.view {
+	height: 100%;
+	header {
+		background-color: @base-title-bgcolor;
+		height: @header-height;
+		width: 100%;
+		position: fixed;
+		top: 0;
+		left: 0;
+		.title {
+			text-align: center;
+			color: #fff;
+			font-size: @base-font-size + .5em;
+			line-height: @header-height;
+		}
+	}
+}
