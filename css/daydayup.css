@@ -16,6 +16,9 @@
 html {
   overflow: hidden;
 }
+ul {
+  list-style: none;
+}
 .full-screen {
   position: absolute;
   top: 0;
@@ -212,12 +215,47 @@ a {
   z-index: 1;
   overflow: scroll;
 }
+.current {
+  z-index: 100 !important;
+  display: block !important;
+}
+.current.out {
+  -webkit-transition: -webkit-transform 400ms;
+  -webkit-transform: translate3d(-100%, 0, 0);
+}
+.next {
+  display: block;
+  -webkit-transform: translate3d(100%, 0, 0);
+}
+.next.in {
+  -webkit-transition: -webkit-transform 400ms;
+  -webkit-transform: translate3d(0, 0, 0);
+}
+.sidebar {
+  z-index: 50;
+  display: block;
+  width: 80%;
+}
+.sidebar.show + .current {
+  -webkit-transition: -webkit-transform 400ms;
+  -webkit-transform: translate3d(80%, 0, 0);
+}
+.sidebar.hide + .current {
+  -webkit-transition: -webkit-transform 400ms;
+  -webkit-transform: translate3d(0, 0, 0);
+}
 .view {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  display: none;
+  width: 100%;
   height: 100%;
 }
 .view header {
   background-color: #a6ffa6;
-  height: 45px;
+  height: 50px;
   width: 100%;
   position: fixed;
   top: 0;
@@ -227,5 +265,24 @@ a {
   text-align: center;
   color: #fff;
   font-size: 1.5em;
-  line-height: 45px;
+  line-height: 50px;
+}
+.view .pulldown {
+  height: 49px;
+  width: 100%;
+}
+.view .content {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+.view .content li {
+  border-top: 1px solid #eaeaea;
+  border-bottom: 1px solid #eaeaea;
+  height: 45px;
+}
+.view .content li .list-icon {
+  display: inline-block;
+  height: 100%;
+  width: 40px;
 }

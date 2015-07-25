@@ -1,5 +1,6 @@
 @base-title-bgcolor: #A6FFA6;
-@header-height: 45px;
+@header-height: 50px;
+@list-item-height:45px;
 
 #wrapper {  
     .full-screen;
@@ -7,7 +8,45 @@
     overflow: scroll;
 } 
 
+.current {
+	z-index: 100 !important;
+	display: block !important;
+}
+
+.current.out {
+	-webkit-transition: -webkit-transform 400ms;
+	-webkit-transform: translate3d(-100%,0,0);
+}
+.next {
+	display: block;
+	-webkit-transform: translate3d(100%,0,0);
+}
+.next.in{
+	-webkit-transition: -webkit-transform 400ms;
+	-webkit-transform: translate3d(0,0,0);
+}
+
+.sidebar {
+	z-index: 50;
+	display: block;
+	width: 80%;
+}
+.sidebar.show + .current {
+	-webkit-transition: -webkit-transform 400ms;
+	-webkit-transform: translate3d(80%,0,0);
+}
+.sidebar.hide + .current {
+	-webkit-transition: -webkit-transform 400ms;
+	-webkit-transform: translate3d(0,0,0);
+}
+
 .view {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 99;
+	display: none;
+	width: 100%;
 	height: 100%;
 	header {
 		background-color: @base-title-bgcolor;
@@ -21,6 +60,26 @@
 			color: #fff;
 			font-size: @base-font-size + .5em;
 			line-height: @header-height;
+		}
+	}
+	.pulldown {
+		height: @header-height - 1px;
+		width: 100%;
+	}
+	.content {
+		margin: 0;
+		padding: 0;
+		width: 100%;
+		li {
+			border-top: 1px solid @hacker-base-color;
+			border-bottom: 1px solid @hacker-base-color;
+			height: @list-item-height;
+			.list-icon {
+				display: inline-block;
+				height: 100%;
+				width: 40px;
+				
+			}
 		}
 	}
 }
