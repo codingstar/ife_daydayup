@@ -1,4 +1,4 @@
-@base-title-bgcolor: #A6FFA6;
+@base-title-bgcolor: #B5FFB5;
 @header-height: 50px;
 @list-item-height:56px;
 @base-font-color: #222;
@@ -266,8 +266,11 @@
 				span:first-child {
 					border: 0;
 				}
-				span:focus {
+				.num:focus, .num.focus {
 					background-color: @hacker-base-color - #111;
+				}
+				.opt:focus, .opt.focus {
+					background-color: @base-title-bgcolor + #100010;
 				}
 			}
 		}

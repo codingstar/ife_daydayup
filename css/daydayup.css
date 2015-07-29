@@ -264,7 +264,7 @@ a {
   background-color: #fff;
 }
 .view header {
-  background-color: #a6ffa6;
+  background-color: #b5ffb5;
   height: 50px;
   width: 100%;
   position: fixed;
@@ -457,8 +457,13 @@ a {
 .view .numberinput .inputpanel .btn-row span:first-child {
   border: 0;
 }
-.view .numberinput .inputpanel .btn-row span:focus {
+.view .numberinput .inputpanel .btn-row .num:focus,
+.view .numberinput .inputpanel .btn-row .num.focus {
   background-color: #d9d9d9;
+}
+.view .numberinput .inputpanel .btn-row .opt:focus,
+.view .numberinput .inputpanel .btn-row .opt.focus {
+  background-color: #c5ffc5;
 }
 .view .numberinput.in {
   -webkit-transition: -webkit-transform 400ms;
