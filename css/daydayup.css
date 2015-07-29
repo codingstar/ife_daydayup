@@ -297,6 +297,29 @@ a {
   height: 49px;
   width: 100%;
 }
+.view .list-icon {
+  display: inline-block;
+  height: 40px;
+  width: 40px;
+  border-radius: 20px;
+  line-height: 40px;
+  margin-top: 8px;
+  margin-left: 8px;
+  color: #fff;
+  text-align: center;
+}
+.view .list-icon.dinner {
+  background-color: #FFB5B5;
+}
+.view .list-icon.home {
+  background-color: #FF8F59;
+}
+.view .list-icon.traffic {
+  background-color: #87CEFA;
+}
+.view .list-icon.income {
+  background-color: #79FF79;
+}
 .view .content {
   margin: 0;
   padding: 0;
@@ -339,28 +362,20 @@ a {
   width: 70px;
   line-height: 25px;
 }
-.view .content .list-item .list-icon {
+.view .content .list-item .item-icon-text {
   display: inline-block;
-  height: 40px;
-  width: 40px;
-  border-radius: 20px;
-  line-height: 40px;
-  margin-top: 8px;
-  margin-left: 8px;
-  color: #fff;
+  width: 56px;
+  height: 100%;
+}
+.view .content .list-item .item-icon-text .desc {
+  color: #777777;
+  font-size: .9rem;
+  display: block;
+  width: 100%;
+  height: 25px;
+  margin-top: -8px;
+  line-height: 25px;
   text-align: center;
-}
-.view .content .list-item .list-icon.dinner {
-  background-color: #FFB5B5;
-}
-.view .content .list-item .list-icon.home {
-  background-color: #FF8F59;
-}
-.view .content .list-item .list-icon.traffic {
-  background-color: #87CEFA;
-}
-.view .content .list-item .list-icon.income {
-  background-color: #79FF79;
 }
 .view .content .btns {
   display: block;
@@ -401,4 +416,51 @@ a {
 }
 .view .types .list-item {
   height: 71px;
+}
+.view .numberinput {
+  position: fixed;
+  top: 100%;
+  left: 0;
+  height: 350px;
+  width: 100%;
+  color: #555555;
+}
+.view .numberinput .usage {
+  height: 71px;
+  line-height: 71px;
+  background-color: #eaeaea;
+  font-size: 1.2em;
+}
+.view .numberinput .usage .text {
+  margin-left: 5px;
+}
+.view .numberinput .usage .money:before {
+  content: "￥";
+}
+.view .numberinput .inputpanel {
+  height: 279px;
+}
+.view .numberinput .inputpanel .btn-row {
+  height: 69.75px;
+  line-height: 69.75px;
+  text-align: center;
+  font-size: 1.4em;
+  border-top: 1px solid #bbbbbb;
+}
+.view .numberinput .inputpanel .btn-row span {
+  width: 24.5%;
+  display: inline-block;
+  height: 100%;
+  float: left;
+  border-left: 1px solid #bbbbbb;
+}
+.view .numberinput .inputpanel .btn-row span:first-child {
+  border: 0;
+}
+.view .numberinput .inputpanel .btn-row span:focus {
+  background-color: #d9d9d9;
+}
+.view .numberinput.in {
+  -webkit-transition: -webkit-transform 400ms;
+  -webkit-transform: translate3d(0, -350px, 0);
 }

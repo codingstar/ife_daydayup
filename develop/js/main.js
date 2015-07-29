@@ -30,20 +30,27 @@ $(function() {
 		var now = $('.main');
 		var next = $('.new');
 		now.addClass('out');
-		next.addClass('in')
-			.removeClass('next')
-			.addClass('current')
-			.removeClass('in');
-		now.removeClass('current')
-			.removeClass('out')
-			.addClass('next');
+		next.addClass('next').addClass('in');
+		// next.removeClass('next');
+		// next.addClass('current');
+		// now.removeClass('current');
+		// now.addClass('next');
+  //       next.removeClass('in');
+		// now.removeClass('out');
 	});
 	$('.new').on('click', '.header-left', function() {
 		var now = $('.new');
 		var next = $('.main');
 		next.removeClass('out');
-		now.removeClass('in');
-		next.addClass('in');
-		now.addClass('out');
+        now.addClass('next').removeClass('in');
+		
+		// next.addClass('in');
+		// now.addClass('out');
+  //       next.removeClass('next')
+  //           .addClass('current')
+  //           .removeClass('in');
+  //       now.removeClass('current')
+  //           .addClass('next')
+  //           .removeClass('out');
 	});
 })
