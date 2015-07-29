@@ -11,7 +11,7 @@ module.exports = function(grunt) {
         cssmin:{  
             minify: {  
                 expand: true,  
-                src: ['css/daydayup.css'],  
+                src: ['css/daydayup.css', 'css/font-awesome.css'],  
                 dest: '',  
                 ext: '.min.css'  
             }  

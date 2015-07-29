@@ -1,20 +1,8 @@
-@font-face {
-  font-family: 'Glyphicons Halflings';
-  src: url('../fonts/glyphicons-halflings-regular.eot');
-  src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
-}
-.glyphicon {
-  position: relative;
-  top: 1px;
-  display: inline-block;
-  font-family: 'Glyphicons Halflings';
-  -webkit-font-smoothing: antialiased;
-  font-style: normal;
-  font-weight: normal;
-  line-height: 1;
-}
 html {
   overflow: hidden;
+}
+ul {
+  list-style: none;
 }
 .full-screen {
   position: absolute;
@@ -212,20 +200,205 @@ a {
   z-index: 1;
   overflow: scroll;
 }
-.view {
+#scroll {
+  position: relative;
   height: 100%;
+}
+.current {
+  z-index: 100 !important;
+  display: block !important;
+}
+.current.out {
+  -webkit-transition: -webkit-transform 400ms;
+  -webkit-transform: translate3d(0, -100%, 0) !important;
+}
+.next {
+  display: block !important;
+  -webkit-transform: translate3d(0, 100%, 0) !important;
+}
+.next.in {
+  -webkit-transition: -webkit-transform 400ms;
+  -webkit-transform: translate3d(0, 0, 0) !important;
+}
+.sidebar {
+  z-index: 50 !important;
+  display: block !important;
+  width: 60% !important;
+}
+.sidebar .menu {
+  background-color: #272727;
+  color: #fff;
+  font-weight: bold;
+  margin: 0;
+  height: 100%;
+  font-weight: normal;
+  padding: 0;
+}
+.sidebar .menu li {
+  height: 56px;
+  line-height: 56px;
+  border-bottom: 1px solid #b7b7b7;
+}
+.sidebar .menu li i {
+  margin: 0 15px;
+}
+.sidebar.show + .current {
+  -webkit-transition: -webkit-transform 400ms;
+  -webkit-transform: translate3d(60%, 0, 0);
+}
+.sidebar.hide + .current {
+  -webkit-transition: -webkit-transform 400ms;
+  -webkit-transform: translate3d(0, 0, 0);
+}
+.view {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  display: none;
+  width: 100%;
+  height: 100%;
+  font-family: "Microsoft YaHei";
+  background-color: #fff;
 }
 .view header {
   background-color: #a6ffa6;
-  height: 45px;
+  height: 50px;
   width: 100%;
   position: fixed;
   top: 0;
   left: 0;
-}
-.view header .title {
-  text-align: center;
   color: #fff;
   font-size: 1.5em;
-  line-height: 45px;
+  line-height: 50px;
+  text-align: center;
+}
+.view header .title {
+  width: 50%;
+  margin: 0 auto;
+}
+.view header .header-left,
+.view header .header-right {
+  width: 50px;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  font-weight: 100;
+}
+.view header .header-left {
+  left: 0;
+}
+.view header .header-right {
+  right: 0;
+}
+.view .pulldown {
+  height: 49px;
+  width: 100%;
+}
+.view .content {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+.view .content li {
+  position: relative;
+  transition: transform 0ms;
+  -webkit-transition: transform 0ms;
+  transform-origin: 0px 0px 0px;
+  transform: translate(0px, 0px) translateZ(0px);
+}
+.view .content .list-item {
+  border-top: 1px dashed #eaeaea;
+  border-bottom: 1px dashed #eaeaea;
+  height: 56px;
+  line-height: 56px;
+  color: #222222;
+  font-size: 1.25rem;
+  background-color: #fff;
+}
+.view .content .list-item .usage {
+  display: inline-block;
+  width: 18%;
+  text-align: center;
+}
+.view .content .list-item .money {
+  display: inline-block;
+}
+.view .content .list-item .money.out {
+  color: #FF2D2D;
+}
+.view .content .list-item .money.in {
+  color: #79FF79;
+}
+.view .content .list-item .time {
+  display: inline-block;
+  font-size: .4rem;
+  color: #888888;
+  width: 70px;
+  line-height: 25px;
+}
+.view .content .list-item .list-icon {
+  display: inline-block;
+  height: 40px;
+  width: 40px;
+  border-radius: 20px;
+  line-height: 40px;
+  margin-top: 8px;
+  margin-left: 8px;
+  color: #fff;
+  text-align: center;
+}
+.view .content .list-item .list-icon.dinner {
+  background-color: #FFB5B5;
+}
+.view .content .list-item .list-icon.home {
+  background-color: #FF8F59;
+}
+.view .content .list-item .list-icon.traffic {
+  background-color: #87CEFA;
+}
+.view .content .list-item .list-icon.income {
+  background-color: #79FF79;
+}
+.view .content .btns {
+  display: block;
+  float: right;
+  z-index: -10;
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+.view .content .btns .btn {
+  width: 50px;
+  height: 56px;
+  text-align: center;
+  background-color: #FF2D2D;
+  color: #fff;
+  display: inline-block;
+  margin: 0;
+  line-height: 56px;
+  font-size: 1.25rem;
+}
+.view .content .btns .btn:first-child {
+  border-right: 1px solid #fff;
+}
+.view .content .btns .btn.edit {
+  background-color: #87CEFA;
+}
+.view .content .btns .btn.delete {
+  background-color: #FF3F3F;
+}
+.view .content .list-item.show {
+  -webkit-transition: -webkit-transform 400ms;
+  -webkit-transform: translate3d(0, 0, 0);
+}
+.view .content .list-item.hide {
+  -webkit-transition: -webkit-transform 400ms;
+  -webkit-transform: translate3d(-100px, 0, 0);
+}
+.view .types .list-item {
+  height: 71px;
 }

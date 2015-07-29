@@ -6,7 +6,7 @@
         <meta http-equiv="pragma" content="no-cache" />
         <title>Tally Book</title>
         <meta name="description" content="">
-        <meta content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0" name="viewport" />
+        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
         <meta http-equiv="Cache-Control" content="no-siteapp" />
         <meta content="yes" name="apple-mobile-web-app-capable" />
         <meta content="black" name="apple-mobile-web-app-status-bar-style" />
@@ -15,23 +15,86 @@
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
         <!-- Place favicon.ico in the root directory -->
 
-        <link rel="stylesheet" href="css/daydayup.css">
+        <link rel="stylesheet" href="css/daydayup.min.css">
+        <link rel="stylesheet" href="css/font-awesome.min.css">
         <script src="js/jquery-1.11.2.min.js"></script>
     </head>
     <body>
         <div id="wrapper">  
             <div id="scroll">  
-                <div class="view">
+                <div class="view sidebar hide">
+                    <ul class="menu">
+                        <li><i class="fa fa-user"></i>个人中心</li>
+                        <li><i class="fa fa-list-ul"></i>账目明细</li>
+                        <li><i class="fa fa-bar-chart"></i>分类统计</li>
+                    </ul>
+                </div>
+                <div class="view current main">
                     <header>
+                        <div class="header-left left">
+                            <i class="fa fa-bars"></i>
+                        </div>
                         <div class="title">记账本</div>
-                        <div class="header-menu left">
+                        <div class="header-right right">
+                            <i class="fa fa-plus"></i>
                         </div>
                     </header>
+                    <div class="pulldown">reload</div>
+                    <ul class="content">
+                        <li>
+                            <div class="list-item show">
+                                <span class="list-icon dinner">
+                                    <i class="fa fa-coffee"></i>
+                                </span> 
+                                <span class="usage">午饭</span>
+                                <span class="money out">-20.00</span>
+                                <span class="time right">15/07/23</span>
+                            </div>
+                            <div class="btns">
+                                <span class="btn edit"><i class="fa fa-pencil-square-o"></i></span>
+                                <span class="btn delete right"><i class="fa fa-trash-o"></i></span>
+                            </div>
+                        </li>
+                    </ul>
+                </div> 
+                <div class="view next new">
+                    <header>
+                        <div class="header-left left">
+                            <i class="fa fa-close"></i>
+                        </div>
+                        <div class="title">记一笔</div>
+                        <div class="header-right right">
+                            <i class="fa fa-floppy-o"></i>
+                        </div>
+                    </header>
+                    <div class="pulldown">reload</div>
+                    <ul class="content types">
+                        <li>
+                            <div class="list-item">
+                                <span class="list-icon income">
+                                    <i class="fa fa-money"></i>
+                                </span> 
+                            </div>
+                        </li>
+                        <li>
+                            <div class="list-item">
+                                <span class="list-icon dinner">
+                                    <i class="fa fa-coffee"></i>
+                                </span> 
+                                <span class="list-icon traffic">
+                                    <i class="fa fa-plane"></i>
+                                </span> 
+                                <span class="list-icon home">
+                                    <i class="fa fa-home"></i>
+                                </span> 
+                            </div>
+                        </li>
+                    </ul>
                 </div> 
             </div>  
         </div>  
-        
-        <script src="js/isscroll.js"></script>
+        <script src="js/hammer.min.js"></script>
+        <script src="js/iscroll.js"></script>
         <script src="js/daydayup-0.1.0.js"></script>  
         <script>
         var myScroll;
@@ -41,7 +104,26 @@
         document.addEventListener('DOMContentLoaded', loaded, false);
         window.onload = function() { 
             setTimeout(function(){ new iScroll(document.getElementById('scroller')) }, 100) 
-        };    
-        </script>      
+        };  
+
+        $(function() {
+            //给记账本每一项添加滑动效果
+            var items = document.getElementsByClassName('list-item');
+            for (var i = 0; i < items.length; i++) {
+                var mc = new Hammer(items[i]);
+                mc.on("panleft panright tap", function(ev) {
+                    var item = $(ev.target);
+                    if (ev.type == "panleft") {
+                        item.removeClass('show');
+                        item.addClass('hide');
+                    }
+                    else {
+                        item.removeClass('hide');
+                        item.addClass('show');
+                    }
+                });
+            }  
+        })
+        </script>
     </body>
 </html>
