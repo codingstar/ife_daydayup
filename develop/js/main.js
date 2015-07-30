@@ -16,6 +16,7 @@ var scrollFunc = function(e) {
 }
 
 $(function() {
+    //菜单按钮效果
 	$('.main').on('click', '.header-left', function() {
 		if ($('.sidebar').hasClass('show')==false) {
 			$('.sidebar').removeClass('hide');
@@ -26,14 +27,16 @@ $(function() {
 			$('.sidebar').addClass('hide');
 		}
 	});
-    //菜单按钮效果
+    //打开+ 记一笔页面 按钮效果
 	$('.main').on('click', '.header-right', function() {
 		var now = $('.main');
 		var next = $('.new');
 		now.addClass('out');
 		next.addClass('next').addClass('in');
+        $('.numberinput .money').text("0");
+        $('.numberinput').removeClass('in');
 	});
-    //关闭 记一笔页面 按钮效果
+    //关闭× 记一笔页面 按钮效果
 	$('.new').on('click', '.header-left', function() {
 		var now = $('.new');
 		var next = $('.main');
@@ -78,9 +81,8 @@ $(function() {
         $(this).next().removeClass('hidden');
         $(this).next().focus();
     });
-    items = $('.numberinput .inputpanel span');
-    for (var i = 0; i < items.length; i++) {
-        var mc = new Hammer(items[i]);
+    Hammer.each($('.numberinput .inputpanel span'), function(item, index, src) {
+        var mc = new Hammer(item);
         mc.on("tap", function(ev) {
             var item = $(ev.target);
             if (item.hasClass('num')) {
@@ -112,7 +114,7 @@ $(function() {
                     var tax = $('.numberinput .money').text();
                     if (tax[tax.length-1] == "+" || tax[tax.length-1] == "-")
                         tax = tax.substr(0, tax.length-1);
-                    $('.numberinput .money').text(eval(tax));
+                    $('.numberinput .money').text(eval(tax).toFixed(2));
                 }
                 else {  //+ 或 -
                     var tax = $('.numberinput .money').text();
@@ -130,5 +132,5 @@ $(function() {
                 $('.numberinput .money').text(tax);
             }
         });
-    }  
+    });  
 })

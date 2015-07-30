@@ -43,7 +43,7 @@
                     <ul class="content">
                         <li>
                             <div class="list-item show">
-                                <span class="list-icon dinner">
+                                <span class="list-icon dinner" data-type="dinner">
                                     <i class="fa fa-coffee"></i>
                                 </span> 
                                 <span class="usage">午饭</span>
@@ -72,7 +72,7 @@
                         <li>
                             <div class="list-item">
                                 <div class="item-icon-text">
-                                    <span class="list-icon income">
+                                    <span class="list-icon income" data-type="income">
                                         <i class="fa fa-money"></i>
                                     </span> 
                                     <span class="desc">收入</span>
@@ -82,19 +82,19 @@
                         <li>
                             <div class="list-item">
                                 <div class="item-icon-text">
-                                    <span class="list-icon dinner">
+                                    <span class="list-icon dinner" data-type="dinner">
                                         <i class="fa fa-coffee"></i>
                                     </span> 
                                     <span class="desc">饮食</span>
                                 </div>
                                 <div class="item-icon-text">
-                                    <span class="list-icon traffic">
+                                    <span class="list-icon traffic" data-type="traffic">
                                         <i class="fa fa-plane"></i>
                                     </span> 
                                     <span class="desc">交通</span>
                                 </div>
                                 <div class="item-icon-text">
-                                    <span class="list-icon home">
+                                    <span class="list-icon home" data-type="home">
                                         <i class="fa fa-home"></i>
                                     </span> 
                                     <span class="desc">住宿</span>
@@ -104,7 +104,7 @@
                     </ul>
                     <div class="numberinput">
                         <div class="usage">
-                            <span class="list-icon dinner">
+                            <span class="list-icon dinner" data-type="dinner">
                                 <i class="fa fa-coffee"></i>
                             </span>
                             <span class="text">午饭</span>
@@ -154,6 +154,19 @@
             setTimeout(function(){ new iScroll(document.getElementById('scroller')) }, 100) 
         };  
 
+        var loadAccount = function() {
+            var list = getRecords();
+            var parent = $('.main .content');
+            parent.empty();
+            for (var i = list.length-1; i >= 0; i--) {
+                var record = list[i];
+                var item = createItemNode(record);
+                var li = $('<li></li>');
+                li.append(item);
+                parent.append(li);
+            }
+        };
+
         $(function() {
             Hammer.each($('.new .types .list-item .item-icon-text'), function(item, index, src) {
                     var mit = new Hammer(item);
@@ -170,6 +183,18 @@
                         $('.numberinput').addClass('in');
                     });
             });
+            Hammer($('.new .header-right')[0]).on('tap', function(ev) {
+                var type = $('.numberinput .usage .list-icon').data('type');
+                var name = $('.numberinput .usage .text').text();
+                var amount = parseFloat($('.numberinput .usage .money').text()).toFixed(2);
+                createNewRecord(type, name, amount);
+                setTimeout(function() {
+                    $('.new .header-left').click();
+                    loadAccount();
+                }, 1000);
+            });
+
+            loadAccount();
         })
         </script>
     </body>

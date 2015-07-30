@@ -1,27 +1,92 @@
-var Item = {
+;var Item = {
 	name: "",
 	type: "",
 	time: "",
-	amount: 0
-	// setName: function(value) {
-	// 	name = value;
-	// },
-	// setTime: function(value) {
-	// 	time = value;
-	// },
-	// setAmount: function(value) {
-	// 	amount = value;
-	// },
-	// getName: function() {
-	// 	return name;
-	// },
-	// getTime: function() {
-	// 	return time;
-	// },
-	// getAmount: function() {
-	// 	return amount;
-	// }
+	amount: 0,
+	dir: -1,
+	createItem: function(type, name, amount, time) {
+		var item = {};
+		item.name = name;
+		item.type = type;
+		item.amount = amount;
+		item.time = time;
+		if (type=="income") //收入类型
+			item.dir = 1;
+		else
+			item.dir = -1;
+		changeTotal(item.dir*amount);
+		if (item.dir == -1)
+			changeTotalOutcome(amount);
+		else
+			changeTotalIncome(amount);
+		return item;
+	}
 };
+
+var createItemNode = function(obj) {
+	var icon, money, dir;
+	if (obj.type == "dinner")
+		icon = "coffee";
+	else if (obj.type == "traffic")
+		icon = "plane";
+	else if (obj.type == "home")
+		icon = "home";
+	else if (obj.type == "income")
+		icon = "money";
+	if (obj.dir == -1) {
+		dir = "out";
+		money = -1*obj.amount;
+	}
+	else {
+		dir = "in";
+		money = obj.amount;
+	}
+	var str = '<div class="list-item show">'+
+				'<span class="list-icon '+obj.type+'" data-type="'+obj.type+'">'+
+					'<i class="fa fa-'+icon+'"></i>'+
+				'</span> '+
+				'<span class="usage">'+obj.name+'</span>'+
+				'<span class="money '+dir+'">'+money+'</span>'+
+				'<span class="time right">'+obj.time+'</span>'+
+			  '</div>'+
+			  '<div class="btns">'+
+			  	'<span class="btn edit"><i class="fa fa-pencil-square-o"></i></span>'+
+			  	'<span class="btn delete right"><i class="fa fa-trash-o"></i></span>'+
+			  '</div>';
+	return $(str).clone();
+}
+
+var createNewRecord = function(type, name, amount) {
+	var time = new Date().toLocaleDateString();
+	var record = new Item.createItem(type, name, amount, time);
+	
+	var list = JSON.parse(window.localStorage.getItem('lists'));
+	list.push(record);
+	window.localStorage.setItem('lists', JSON.stringify(list));
+}
+
+var getRecords = function(index) {
+	var list = JSON.parse(window.localStorage.getItem('lists'));
+	if (typeof index == "undefined") 
+		return list;
+	return list[index];
+}
+
+
+var changeTotal = function(delta) {
+	var fee = window.localStorage.getItem('totalFee');
+	window.localStorage.setItem('totalFee', fee + delta);
+}
+
+var changeTotalIncome = function(delta) {
+	var fee = window.localStorage.getItem('totalIncome');
+	window.localStorage.setItem('totalIncome', fee + delta);
+}
+
+var changeTotalOutcome = function(delta) {
+	var fee = window.localStorage.getItem('totalOutcome');
+	window.localStorage.setItem('totalOutcome', fee + delta);
+}
 
 $(function() {
 	var storage = window.localStorage;
