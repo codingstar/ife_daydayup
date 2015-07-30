@@ -35,6 +35,23 @@ $(function() {
 		next.removeClass('out');
         now.addClass('next').removeClass('in');
 	});
+    //给记账本每一项添加滑动效果
+    //var items = document.getElementsByClassName('list-item');
+    var items = $('.main .list-item');
+    for (var i = 0; i < items.length; i++) {
+        var mc = new Hammer(items[i]);
+        mc.on("panleft panright tap", function(ev) {
+            var item = $(ev.target);
+            if (ev.type == "panleft") {
+                item.removeClass('show');
+                item.addClass('hide');
+            }
+            else {
+                item.removeClass('hide');
+                item.addClass('show');
+            }
+        });
+    } 
     //计算器输入框效果
     $('.numberinput').on('touchstart', 'span', function() {
         $(this).addClass('focus');
@@ -42,7 +59,21 @@ $(function() {
     $('.numberinput').on('touchend', 'span', function() {
         $(this).removeClass('focus');
     });
-    var items = $('.numberinput span');//document.getElementsByClassName('list-item');
+    // var sp = new Hammer($('.numberinput .usage .text'));
+    // sp.on('tap', function(ev) {
+    //     $(this).next().val($(this).text());
+    //     $(this).next().removeClass('hidden');
+    // });
+    $('.numberinput .usage .usagename').blur(function() {
+        $(this).prev().text($(this).val());
+        $(this).addClass('hidden');
+    });
+    $('.new').on('click', '.numberinput .usage .text', function() {
+        $(this).next().val($(this).text());
+        $(this).next().removeClass('hidden');
+        $(this).next().focus();
+    });
+    items = $('.numberinput .inputpanel span');
     for (var i = 0; i < items.length; i++) {
         var mc = new Hammer(items[i]);
         mc.on("tap", function(ev) {
@@ -68,6 +99,8 @@ $(function() {
                 else if (opt.length == 0) { //退格
                     var tax = $('.numberinput .money').text();
                     tax = tax.substr(0, tax.length-1);
+                    if (tax == "")
+                        tax = "0";
                     $('.numberinput .money').text(tax);
                 }
                 else if (opt == '=') {
@@ -85,10 +118,12 @@ $(function() {
                 }
             }
             else { //退格
-                    var tax = $('.numberinput .money').text();
-                    tax = tax.substr(0, tax.length-1);
-                    $('.numberinput .money').text(tax);
-                }
+                var tax = $('.numberinput .money').text();
+                tax = tax.substr(0, tax.length-1);
+                if (tax == "")
+                    tax = "0";
+                $('.numberinput .money').text(tax);
+            }
         });
     }  
 });var Item = {

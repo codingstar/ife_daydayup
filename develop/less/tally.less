@@ -112,6 +112,7 @@
 		line-height: 40px;
 		margin-top: (@list-item-height - 40px) / 2;
 		margin-left: 8px;
+		margin-right: 8px;
 		color: #fff;
 		text-align: center;
 
@@ -234,25 +235,41 @@
 		left: 0;
 		height: @numberinput-height;
 		width: 100%;
-		@header-height: @list-item-height + 15px;
+		@input-header-height: @list-item-height + 15px;
 		color: @base-font-color + #333;
 		.usage {
-			height: @header-height;
-			line-height: @header-height;
+			height: @input-header-height;
+			line-height: @input-header-height;
 			background-color: @hacker-base-color;
 			font-size: @base-font-size + .2em;
+			position: relative;
 			.text {
 				margin-left: 5px;
 			}
 			.money:before {
 				content: "￥";
 			}
+			.usagename {
+				border: 0;
+				.left;
+				left: 60px;
+				position: absolute;
+				top: 6px;
+				height: @input-header-height - 13px;
+				line-height: @input-header-height - 13px;
+				font-size: @base-font-size + .2em;
+				width: 50%;
+				font-family: @font;
+				color: @base-font-color + #333;
+				background-color: @hacker-base-color;
+				border-bottom: 1px solid @base-font-color + #333;
+			}
 		}
 		.inputpanel {
-			height: @numberinput-height - @header-height;
+			height: @numberinput-height - @input-header-height;
 			.btn-row {
-				height: (@numberinput-height - @header-height) / 4;
-				line-height: (@numberinput-height - @header-height) / 4;
+				height: (@numberinput-height - @input-header-height) / 4;
+				line-height: (@numberinput-height - @input-header-height) / 4;
 				text-align: center;
 				font-size: @base-font-size + .4em;
 				border-top: 1px solid @base-font-color + #999;

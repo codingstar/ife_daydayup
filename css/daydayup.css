@@ -17,6 +17,9 @@ ul {
 .left {
   float: left;
 }
+.hidden {
+  display: none;
+}
 .hacker {
   color: #eaeaea;
   font-size: 1em;
@@ -305,6 +308,7 @@ a {
   line-height: 40px;
   margin-top: 8px;
   margin-left: 8px;
+  margin-right: 8px;
   color: #fff;
   text-align: center;
 }
@@ -430,12 +434,28 @@ a {
   line-height: 71px;
   background-color: #eaeaea;
   font-size: 1.2em;
+  position: relative;
 }
 .view .numberinput .usage .text {
   margin-left: 5px;
 }
 .view .numberinput .usage .money:before {
   content: "￥";
+}
+.view .numberinput .usage .usagename {
+  border: 0;
+  float: left;
+  left: 60px;
+  position: absolute;
+  top: 6px;
+  height: 58px;
+  line-height: 58px;
+  font-size: 1.2em;
+  width: 50%;
+  font-family: "Microsoft YaHei";
+  color: #555555;
+  background-color: #eaeaea;
+  border-bottom: 1px solid #555555;
 }
 .view .numberinput .inputpanel {
   height: 279px;

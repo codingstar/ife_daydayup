@@ -102,12 +102,13 @@
                             </div>
                         </li>
                     </ul>
-                    <div class="numberinput in">
+                    <div class="numberinput">
                         <div class="usage">
                             <span class="list-icon dinner">
                                 <i class="fa fa-coffee"></i>
                             </span>
                             <span class="text">午饭</span>
+                            <input type="text" class="usagename hidden" />
                             <span class="money right">0</span>
                         </div>
                         <div class="inputpanel">
@@ -154,22 +155,21 @@
         };  
 
         $(function() {
-            //给记账本每一项添加滑动效果
-            var items = document.getElementsByClassName('list-item');
-            for (var i = 0; i < items.length; i++) {
-                var mc = new Hammer(items[i]);
-                mc.on("panleft panright tap", function(ev) {
-                    var item = $(ev.target);
-                    if (ev.type == "panleft") {
-                        item.removeClass('show');
-                        item.addClass('hide');
-                    }
-                    else {
-                        item.removeClass('hide');
-                        item.addClass('show');
-                    }
-                });
-            }  
+            Hammer.each($('.new .types .list-item .item-icon-text'), function(item, index, src) {
+                    var mit = new Hammer(item);
+                    mit.on('tap', function(ev) {
+                        var obj;
+                        if ($(ev.target).hasClass('item-icon-text'))
+                            obj = $(ev.target);
+                        else
+                            obj = $(ev.target).parents('.item-icon-text')[0];
+                        var icon = $(obj).find('.list-icon').clone();
+                        $('.numberinput .usage .list-icon').remove();
+                        $('.numberinput .usage:eq(0)').prepend(icon);
+                        $('.numberinput .usage .text').text($(obj).find('.desc').text());
+                        $('.numberinput').addClass('in');
+                    });
+            });
         })
         </script>
     </body>
