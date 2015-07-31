@@ -23,7 +23,7 @@
 	}
 };
 
-var createItemNode = function(obj) {
+var createItemNode = function(id, obj) {
 	var icon, money, dir;
 	if (obj.type == "dinner")
 		icon = "coffee";
@@ -41,7 +41,7 @@ var createItemNode = function(obj) {
 		dir = "in";
 		money = obj.amount;
 	}
-	var str = '<div class="list-item show">'+
+	var str = '<div class="list-item show" id="'+id+'">'+
 				'<span class="list-icon '+obj.type+'" data-type="'+obj.type+'">'+
 					'<i class="fa fa-'+icon+'"></i>'+
 				'</span> '+

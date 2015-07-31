@@ -160,7 +160,7 @@
             parent.empty();
             for (var i = list.length-1; i >= 0; i--) {
                 var record = list[i];
-                var item = createItemNode(record);
+                var item = createItemNode(i, record);
                 var li = $('<li></li>');
                 li.append(item);
                 parent.append(li);
