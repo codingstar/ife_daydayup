@@ -15,6 +15,25 @@ var scrollFunc = function(e) {
     return 0;
 }
 
+//给记账本每一项添加滑动效果
+var bindShowBtns = function() {
+    Hammer.each($('.main .list-item'), function(item, index, src) {
+        var mc = new Hammer(item);
+        //var mc = new Hammer(items[i]);
+        mc.on("panleft panright tap", function(ev) {
+            var item = $(ev.target);
+            if (ev.type == "panleft") {
+                item.removeClass('show');
+                item.addClass('hide');
+            }
+            else {
+                item.removeClass('hide');
+                item.addClass('show');
+            }
+        });
+    }); 
+}
+
 $(function() {
     //菜单按钮效果
 	$('.main').on('click', '.header-left', function() {
@@ -43,23 +62,7 @@ $(function() {
 		next.removeClass('out');
         now.addClass('next').removeClass('in');
 	});
-    //给记账本每一项添加滑动效果
-    //var items = document.getElementsByClassName('list-item');
-    var items = $('.main .list-item');
-    for (var i = 0; i < items.length; i++) {
-        var mc = new Hammer(items[i]);
-        mc.on("panleft panright tap", function(ev) {
-            var item = $(ev.target);
-            if (ev.type == "panleft") {
-                item.removeClass('show');
-                item.addClass('hide');
-            }
-            else {
-                item.removeClass('hide');
-                item.addClass('show');
-            }
-        });
-    } 
+    
     //计算器输入框效果
     $('.numberinput').on('touchstart', 'span', function() {
         $(this).addClass('focus');
