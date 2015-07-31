@@ -1,0 +1,202 @@
+<!doctype html>
+<html class="no-js frame" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
+        <meta http-equiv="pragma" content="no-cache" />
+        <title>Tally Book</title>
+        <meta name="description" content="">
+        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+        <meta http-equiv="Cache-Control" content="no-siteapp" />
+        <meta content="yes" name="apple-mobile-web-app-capable" />
+        <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+        <meta content="telephone=no" name="format-detection" />
+
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <!-- Place favicon.ico in the root directory -->
+
+        <link rel="stylesheet" href="css/daydayup.min.css">
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <script src="js/jquery-1.11.2.min.js"></script>
+    </head>
+    <body>
+        <div id="wrapper">  
+            <div id="scroll">  
+                <div class="view sidebar hide">
+                    <ul class="menu">
+                        <li><i class="fa fa-user"></i>个人中心</li>
+                        <li><i class="fa fa-list-ul"></i>账目明细</li>
+                        <li><i class="fa fa-bar-chart"></i>分类统计</li>
+                    </ul>
+                </div>
+                <div class="view current main">
+                    <header>
+                        <div class="header-left left">
+                            <i class="fa fa-bars"></i>
+                        </div>
+                        <div class="title">记账本</div>
+                        <div class="header-right right">
+                            <i class="fa fa-plus"></i>
+                        </div>
+                    </header>
+                    <div class="pulldown">reload</div>
+                    <ul class="content">
+                        <li>
+                            <div class="list-item show">
+                                <span class="list-icon dinner" data-type="dinner">
+                                    <i class="fa fa-coffee"></i>
+                                </span> 
+                                <span class="usage">午饭</span>
+                                <span class="money out">-20.00</span>
+                                <span class="time right">15/07/23</span>
+                            </div>
+                            <div class="btns">
+                                <span class="btn edit"><i class="fa fa-pencil-square-o"></i></span>
+                                <span class="btn delete right"><i class="fa fa-trash-o"></i></span>
+                            </div>
+                        </li>
+                    </ul>
+                </div> 
+                <div class="view next new">
+                    <header>
+                        <div class="header-left left">
+                            <i class="fa fa-close"></i>
+                        </div>
+                        <div class="title">记一笔</div>
+                        <div class="header-right right">
+                            <i class="fa fa-floppy-o"></i>
+                        </div>
+                    </header>
+                    <div class="pulldown">reload</div>
+                    <ul class="content types">
+                        <li>
+                            <div class="list-item">
+                                <div class="item-icon-text">
+                                    <span class="list-icon income" data-type="income">
+                                        <i class="fa fa-money"></i>
+                                    </span> 
+                                    <span class="desc">收入</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="list-item">
+                                <div class="item-icon-text">
+                                    <span class="list-icon dinner" data-type="dinner">
+                                        <i class="fa fa-coffee"></i>
+                                    </span> 
+                                    <span class="desc">饮食</span>
+                                </div>
+                                <div class="item-icon-text">
+                                    <span class="list-icon traffic" data-type="traffic">
+                                        <i class="fa fa-plane"></i>
+                                    </span> 
+                                    <span class="desc">交通</span>
+                                </div>
+                                <div class="item-icon-text">
+                                    <span class="list-icon home" data-type="home">
+                                        <i class="fa fa-home"></i>
+                                    </span> 
+                                    <span class="desc">住宿</span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="numberinput">
+                        <div class="usage">
+                            <span class="list-icon dinner" data-type="dinner">
+                                <i class="fa fa-coffee"></i>
+                            </span>
+                            <span class="text">午饭</span>
+                            <input type="text" class="usagename hidden" />
+                            <span class="money right">0</span>
+                        </div>
+                        <div class="inputpanel">
+                            <div class="btn-row">
+                                <span class="num">1</span>
+                                <span class="num">2</span>
+                                <span class="num">3</span>
+                                <span class="opt"><i class="fa fa-long-arrow-left"></i></span>
+                            </div>
+                            <div class="btn-row">
+                                <span class="num">4</span>
+                                <span class="num">5</span>
+                                <span class="num">6</span>
+                                <span class="opt">+</span>
+                            </div>
+                            <div class="btn-row">
+                                <span class="num">7</span>
+                                <span class="num">8</span>
+                                <span class="num">9</span>
+                                <span class="opt">-</span>
+                            </div>
+                            <div class="btn-row">
+                                <span class="opt">C</span>
+                                <span class="num">0</span>
+                                <span class="opt">.</span>
+                                <span class="opt">=</span>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </div>  
+        </div>  
+        <script src="js/hammer.min.js"></script>
+        <script src="js/iscroll.js"></script>
+        <script src="js/daydayup-0.1.0.js"></script>  
+        <script>
+        var myScroll;
+        function loaded() {
+            myScroll = new iScroll('wrapper');
+        }
+        document.addEventListener('DOMContentLoaded', loaded, false);
+        window.onload = function() { 
+            setTimeout(function(){ new iScroll(document.getElementById('scroller')) }, 100) 
+        };  
+
+        var loadAccount = function() {
+            var list = getRecords();
+            var parent = $('.main .content');
+            parent.empty();
+            for (var i = list.length-1; i >= 0; i--) {
+                var record = list[i];
+                var item = createItemNode(record);
+                var li = $('<li></li>');
+                li.append(item);
+                parent.append(li);
+            }
+            bindShowBtns();
+        };
+
+        $(function() {
+            Hammer.each($('.new .types .list-item .item-icon-text'), function(item, index, src) {
+                    var mit = new Hammer(item);
+                    mit.on('tap', function(ev) {
+                        var obj;
+                        if ($(ev.target).hasClass('item-icon-text'))
+                            obj = $(ev.target);
+                        else
+                            obj = $(ev.target).parents('.item-icon-text')[0];
+                        var icon = $(obj).find('.list-icon').clone();
+                        $('.numberinput .usage .list-icon').remove();
+                        $('.numberinput .usage:eq(0)').prepend(icon);
+                        $('.numberinput .usage .text').text($(obj).find('.desc').text());
+                        $('.numberinput').addClass('in');
+                    });
+            });
+            Hammer($('.new .header-right')[0]).on('tap', function(ev) {
+                var type = $('.numberinput .usage .list-icon').data('type');
+                var name = $('.numberinput .usage .text').text();
+                var amount = parseFloat($('.numberinput .usage .money').text()).toFixed(2);
+                createNewRecord(type, name, amount);
+                setTimeout(function() {
+                    $('.new .header-left').click();
+                    loadAccount();
+                }, 1000);
+            });
+
+            loadAccount();
+        })
+        </script>
+    </body>
+</html>
