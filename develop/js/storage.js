@@ -65,6 +65,22 @@ var createNewRecord = function(type, name, amount) {
 	window.localStorage.setItem('lists', JSON.stringify(list));
 }
 
+var changeRecord = function(id, type, name, amount) {
+	var time = getRecords(id).time;
+	var record = new Item.createItem(type, name, amount, time);
+	
+	var list = JSON.parse(window.localStorage.getItem('lists'));
+	list[id] = record;
+	window.localStorage.setItem('lists', JSON.stringify(list));
+}
+
+var deleteRecord = function(id) {
+	var list = JSON.parse(window.localStorage.getItem('lists'));
+	list.splice(id, 1);
+	window.localStorage.setItem('lists', JSON.stringify(list));
+	return true;
+}
+
 var getRecords = function(index) {
 	var list = JSON.parse(window.localStorage.getItem('lists'));
 	if (typeof index == "undefined") 

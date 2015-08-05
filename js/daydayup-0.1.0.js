@@ -10,8 +10,9 @@
     return 0;
 }
 
-//给记账本每一项添加滑动效果
+//记账本每一项的动态效果
 var bindShowBtns = function() {
+    //给记账本每一项添加滑动效果
     Hammer.each($('.main .list-item'), function(item, index, src) {
         var mc = new Hammer(item);
         //var mc = new Hammer(items[i]);
@@ -26,7 +27,45 @@ var bindShowBtns = function() {
                 item.addClass('show');
             }
         });
-    }); 
+    });
+    //修改按钮事件
+    Hammer.each($('.main .content .btns .edit'), function(item, index, src) {
+        var mit = new Hammer(item);
+        mit.on('tap', function(ev) {
+            var obj = $($(ev.target).parents('.btns')[0]).prev();
+            var id = $(obj).attr('id');
+            var record = getRecords(id);
+            var now = $('.main');
+            var next = $('.new');
+            now.addClass('out');
+            next.addClass('next').addClass('in');
+            next.data('action', 'edit');
+            next.data('id', id);
+            var icon = $(obj).find('.list-icon').clone();
+            $('.numberinput .usage .list-icon').remove();
+            $('.numberinput .usage:eq(0)').prepend(icon);
+            $('.numberinput .money').text(record.amount);
+            $('.numberinput .usage .text').text(record.name);
+            $('.numberinput').addClass('in');
+        });
+    });
+    //删除按钮事件
+    Hammer.each($('.main .content .btns .delete'), function(item, index, src) {
+        var mit = new Hammer(item);
+        mit.on('tap', function(ev) {
+            var obj = $($(ev.target).parents('.btns')[0]).prev();
+            var id = $(obj).attr('id');
+            var con = confirm("确认删除吗？");
+            if (con == false)
+                return;
+            var result = deleteRecord(id);
+            if (result == true)
+                alert("删除成功！");
+            else
+                alert("删除失败！");
+            loadAccount();
+        });
+    });
 }
 
 $(function() {
@@ -47,8 +86,10 @@ $(function() {
 		var next = $('.new');
 		now.addClass('out');
 		next.addClass('next').addClass('in');
+        next.data('action', 'new');
+        next.data('id', '');
         $('.numberinput .money').text("0");
-        $('.numberinput').removeClass('in');
+        $('.numberinput').addClass('in');
 	});
     //关闭× 记一笔页面 按钮效果
 	$('.new').on('click', '.header-left', function() {
@@ -196,6 +237,22 @@ var createNewRecord = function(type, name, amount) {
 	var list = JSON.parse(window.localStorage.getItem('lists'));
 	list.push(record);
 	window.localStorage.setItem('lists', JSON.stringify(list));
+}
+
+var changeRecord = function(id, type, name, amount) {
+	var time = getRecords(id).time;
+	var record = new Item.createItem(type, name, amount, time);
+	
+	var list = JSON.parse(window.localStorage.getItem('lists'));
+	list[id] = record;
+	window.localStorage.setItem('lists', JSON.stringify(list));
+}
+
+var deleteRecord = function(id) {
+	var list = JSON.parse(window.localStorage.getItem('lists'));
+	list.splice(id, 1);
+	window.localStorage.setItem('lists', JSON.stringify(list));
+	return true;
 }
 
 var getRecords = function(index) {

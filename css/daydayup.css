@@ -203,7 +203,7 @@ a {
   z-index: 1;
   overflow: scroll;
 }
-#scroll {
+#scroller {
   position: relative;
   height: 100%;
 }
@@ -265,6 +265,7 @@ a {
   height: 100%;
   font-family: "Microsoft YaHei";
   background-color: #fff;
+  overflow: hidden;
 }
 .view header {
   background-color: #b5ffb5;
@@ -398,6 +399,7 @@ a {
   color: #fff;
   display: inline-block;
   margin: 0;
+  margin-top: 1px;
   line-height: 56px;
   font-size: 1.25rem;
 }
@@ -425,13 +427,14 @@ a {
   position: fixed;
   top: 100%;
   left: 0;
-  height: 350px;
+  height: 320px;
   width: 100%;
   color: #555555;
+  z-index: 500;
 }
 .view .numberinput .usage {
-  height: 71px;
-  line-height: 71px;
+  height: 56px;
+  line-height: 56px;
   background-color: #eaeaea;
   font-size: 1.2em;
   position: relative;
@@ -448,8 +451,8 @@ a {
   left: 60px;
   position: absolute;
   top: 6px;
-  height: 58px;
-  line-height: 58px;
+  height: 43px;
+  line-height: 43px;
   font-size: 1.2em;
   width: 50%;
   font-family: "Microsoft YaHei";
@@ -458,11 +461,11 @@ a {
   border-bottom: 1px solid #555555;
 }
 .view .numberinput .inputpanel {
-  height: 279px;
+  height: 264px;
 }
 .view .numberinput .inputpanel .btn-row {
-  height: 69.75px;
-  line-height: 69.75px;
+  height: 66px;
+  line-height: 66px;
   text-align: center;
   font-size: 1.4em;
   border-top: 1px solid #bbbbbb;
@@ -487,5 +490,5 @@ a {
 }
 .view .numberinput.in {
   -webkit-transition: -webkit-transform 400ms;
-  -webkit-transform: translate3d(0, -350px, 0);
+  -webkit-transform: translate3d(0, -320px, 0);
 }

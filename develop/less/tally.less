@@ -9,7 +9,7 @@
     overflow: scroll;
 } 
 
-#scroll {
+#scroller {
 	position: relative;
 	height: 100%;
 }
@@ -71,6 +71,7 @@
 	height: 100%;
 	font-family: @font;
 	background-color: #fff;
+	overflow: hidden;
 	header {
 		background-color: @base-title-bgcolor;
 		height: @header-height;
@@ -201,6 +202,7 @@
 				color: #fff;
 				display: inline-block;
 				margin: 0;
+				margin-top: 1px;
 				line-height: @list-item-height;
 				font-size: 1.25rem;
 			}
@@ -228,15 +230,16 @@
 			height: @list-item-height + 15px;
 		}
 	}
-	@numberinput-height: 350px;
+	@numberinput-height: 320px;
 	.numberinput {
 		position: fixed;
 		top: 100%;
 		left: 0;
 		height: @numberinput-height;
 		width: 100%;
-		@input-header-height: @list-item-height + 15px;
+		@input-header-height: @list-item-height;// + 15px;
 		color: @base-font-color + #333;
+		z-index: 500;
 		.usage {
 			height: @input-header-height;
 			line-height: @input-header-height;

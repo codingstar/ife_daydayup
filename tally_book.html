@@ -21,7 +21,7 @@
     </head>
     <body>
         <div id="wrapper">  
-            <div id="scroll">  
+            <div id="scroller">  
                 <div class="view sidebar hide">
                     <ul class="menu">
                         <li><i class="fa fa-user"></i>个人中心</li>
@@ -102,7 +102,7 @@
                             </div>
                         </li>
                     </ul>
-                    <div class="numberinput">
+                    <div class="numberinput in">
                         <div class="usage">
                             <span class="list-icon dinner" data-type="dinner">
                                 <i class="fa fa-coffee"></i>
@@ -150,6 +150,7 @@
             myScroll = new iScroll('wrapper');
         }
         document.addEventListener('DOMContentLoaded', loaded, false);
+        document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
         window.onload = function() { 
             setTimeout(function(){ new iScroll(document.getElementById('scroller')) }, 100) 
         };  
@@ -169,6 +170,7 @@
         };
 
         $(function() {
+            //新建记录时，点击图标的效果
             Hammer.each($('.new .types .list-item .item-icon-text'), function(item, index, src) {
                     var mit = new Hammer(item);
                     mit.on('tap', function(ev) {
@@ -188,11 +190,16 @@
                 var type = $('.numberinput .usage .list-icon').data('type');
                 var name = $('.numberinput .usage .text').text();
                 var amount = parseFloat($('.numberinput .usage .money').text()).toFixed(2);
-                createNewRecord(type, name, amount);
-                setTimeout(function() {
-                    $('.new .header-left').click();
-                    loadAccount();
-                }, 1000);
+                if ($('.new').data('action') == 'edit') {
+                    changeRecord($('.new').data('id'), type, name, amount);
+                    alert("修改成功！");
+                }
+                else {
+                    createNewRecord(type, name, amount);
+                    alert("成功记一笔！");
+                }  
+                $('.new .header-left').click();
+                loadAccount();
             });
 
             loadAccount();
