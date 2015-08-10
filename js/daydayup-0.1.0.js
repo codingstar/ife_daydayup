@@ -68,35 +68,53 @@ var bindShowBtns = function() {
     });
 }
 
+var showView = function(selector) {
+    var obj = $(selector);
+    $('.view').removeClass('current');
+    obj.addClass('current in');
+    obj.removeClass('in');
+    $('.sidebar').removeClass('show').addClass('hide');
+    $('header').addClass('show').removeClass('hide');
+    $('.sidebar').removeClass('hide');
+}
+
 $(function() {
     //菜单按钮效果
-	$('.main').on('click', '.header-left', function() {
+	//$('#wrapper').on('click', '.menu', function() {
+    Hammer($('#wrapper .menu')[0]).on('tap', function(ev) {
 		if ($('.sidebar').hasClass('show')==false) {
-			$('.sidebar').removeClass('hide');
-			$('.sidebar').addClass('show');
+			$('.sidebar').removeClass('hide').addClass('show');
+            $('header').removeClass('show').addClass('hide');
 		}
 		else {
-			$('.sidebar').removeClass('show');
-			$('.sidebar').addClass('hide');
+            $('.sidebar').removeClass('show').addClass('hide');
+            $('header').addClass('show').removeClass('hide');
+            
+            $('.sidebar').removeClass('hide');
 		}
 	});
     //打开+ 记一笔页面 按钮效果
-	$('.main').on('click', '.header-right', function() {
+	$('#wrapper').on('click', '.create', function() {
 		var now = $('.main');
 		var next = $('.new');
 		now.addClass('out');
 		next.addClass('next').addClass('in');
+        $('#wrapper header:eq(0)').addClass('hidden');
         next.data('action', 'new');
         next.data('id', '');
         $('.numberinput .money').text("0");
         $('.numberinput').addClass('in');
 	});
     //关闭× 记一笔页面 按钮效果
-	$('.new').on('click', '.header-left', function() {
-		var now = $('.new');
+	//$('#wrapper').on('click', '.close', function() {
+	Hammer($('.new .close')[0]).on('tap', function(ev) {
+    	var now = $('.new');
 		var next = $('.main');
+        now.addClass('next')
+        now.removeClass('in');
 		next.removeClass('out');
-        now.addClass('next').removeClass('in');
+        $('#wrapper header:eq(0)').removeClass('hidden');
+        
 	});
     
     //计算器输入框效果
@@ -213,7 +231,7 @@ var createItemNode = function(id, obj) {
 	}
 	else {
 		dir = "in";
-		money = obj.amount;
+		money = "+"+obj.amount;
 	}
 	var str = '<div class="list-item show" id="'+id+'">'+
 				'<span class="list-icon '+obj.type+'" data-type="'+obj.type+'">'+

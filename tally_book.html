@@ -21,24 +21,25 @@
     </head>
     <body>
         <div id="wrapper">  
+            <header>
+                <div class="header-left left menu">
+                    <i class="fa fa-bars"></i>
+                </div>
+                <div class="title">记账本</div>
+                <div class="header-right right create">
+                    <i class="fa fa-plus"></i>
+                </div>
+            </header>
             <div id="scroller">  
-                <div class="view sidebar hide">
+                <div class="view sidebar">
                     <ul class="menu">
                         <li><i class="fa fa-user"></i>个人中心</li>
-                        <li><i class="fa fa-list-ul"></i>账目明细</li>
-                        <li><i class="fa fa-bar-chart"></i>分类统计</li>
+                        <li onclick="showView('.main')"><i class="fa fa-list-ul"></i>账目明细</li>
+                        <li onclick="showView('.statistic')"><i class="fa fa-bar-chart"></i>分类统计</li>
                     </ul>
                 </div>
                 <div class="view current main">
-                    <header>
-                        <div class="header-left left">
-                            <i class="fa fa-bars"></i>
-                        </div>
-                        <div class="title">记账本</div>
-                        <div class="header-right right">
-                            <i class="fa fa-plus"></i>
-                        </div>
-                    </header>
+                    
                     <div class="pulldown">reload</div>
                     <ul class="content">
                         <li>
@@ -59,11 +60,11 @@
                 </div> 
                 <div class="view next new">
                     <header>
-                        <div class="header-left left">
+                        <div class="header-left left close">
                             <i class="fa fa-close"></i>
                         </div>
                         <div class="title">记一笔</div>
-                        <div class="header-right right">
+                        <div class="header-right right save">
                             <i class="fa fa-floppy-o"></i>
                         </div>
                     </header>
@@ -139,6 +140,34 @@
                         </div>
                     </div>
                 </div> 
+                <div class="view statistic">
+                    <!--<header>
+                        <div class="header-left left">
+                            <i class="fa fa-bars"></i>
+                        </div>
+                        <div class="title">分类统计</div>
+                        <div class="header-right right">
+                            <i class="fa fa-plus"></i>
+                        </div>
+                    </header>-->
+                    <div class="pulldown">reload</div>
+                    <ul class="content">
+                        <li>
+                            <div class="list-item show">
+                                <span class="list-icon dinner" data-type="dinner">
+                                    <i class="fa fa-coffee"></i>
+                                </span> 
+                                <span class="usage">午饭</span>
+                                <span class="money out">-20.00</span>
+                                <span class="time right">15/07/23</span>
+                            </div>
+                            <div class="btns">
+                                <span class="btn edit"><i class="fa fa-pencil-square-o"></i></span>
+                                <span class="btn delete right"><i class="fa fa-trash-o"></i></span>
+                            </div>
+                        </li>
+                    </ul>
+                </div> 
             </div>  
         </div>  
         <script src="js/hammer.min.js"></script>
@@ -186,7 +215,7 @@
                         $('.numberinput').addClass('in');
                     });
             });
-            Hammer($('.new .header-right')[0]).on('tap', function(ev) {
+            Hammer($('.new .save')[0]).on('tap', function(ev) {
                 var type = $('.numberinput .usage .list-icon').data('type');
                 var name = $('.numberinput .usage .text').text();
                 var amount = parseFloat($('.numberinput .usage .money').text()).toFixed(2);
@@ -198,7 +227,7 @@
                     createNewRecord(type, name, amount);
                     alert("成功记一笔！");
                 }  
-                $('.new .header-left').click();
+                $('.new .close').click();
                 loadAccount();
             });
 

@@ -7,6 +7,7 @@
     .full-screen;
     z-index: 1;
     overflow: scroll;
+    font-family: @font;
 } 
 
 #scroller {
@@ -17,6 +18,8 @@
 .current {
 	z-index: 100 !important;
 	display: block !important;
+	-webkit-transition: -webkit-transform 400ms;
+	-webkit-transform: translate3d(0,0,0) !important;
 }
 
 .current.out {
@@ -25,6 +28,7 @@
 }
 .next {
 	display: block !important;
+	-webkit-transition: -webkit-transform 400ms;
 	-webkit-transform: translate3d(0,100%,0) !important;
 }
 .next.in{
@@ -33,7 +37,7 @@
 }
 
 .sidebar {
-	z-index: 50 !important;
+	z-index: 99 !important;
 	display: block !important;
 	width: 60% !important;
 	.menu {
@@ -54,13 +58,47 @@
 		}
 	}
 }
-.sidebar.show + .current {
-	-webkit-transition: -webkit-transform 400ms;
-	-webkit-transform: translate3d(60%,0,0);
+.sidebar.show, .sidebar.hide {
+	z-index: 100!important;
 }
-.sidebar.hide + .current {
-	-webkit-transition: -webkit-transform 400ms;
-	-webkit-transform: translate3d(0,0,0);
+.sidebar.show + .current, header.hide {
+	-webkit-transition: -webkit-transform 400ms !important;
+	-webkit-transform: translate3d(60%,0,0) !important;
+}
+.sidebar.hide + .current, header.show {
+	-webkit-transition: -webkit-transform 400ms !important;
+	-webkit-transform: translate3d(0,0,0) !important;
+}
+
+header {
+	background-color: @base-title-bgcolor;
+	height: @header-height;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	color: #fff;
+	font-size: @base-font-size + .5em;
+	line-height: @header-height;
+	text-align: center;
+	z-index: 1000;
+	.title {
+		width: 50%;
+		margin: 0 auto;
+	}
+	.header-left, .header-right{
+		width: 50px;
+		display: inline-block;
+		position: absolute;
+		top: 0;
+		font-weight: 100;
+	}
+	.header-left {
+		left: 0;
+	}
+	.header-right {
+		right: 0;
+	}
 }
 
 .view {
@@ -69,37 +107,10 @@
 	display: none;
 	width: 100%;
 	height: 100%;
-	font-family: @font;
 	background-color: #fff;
 	overflow: hidden;
 	header {
-		background-color: @base-title-bgcolor;
-		height: @header-height;
-		width: 100%;
-		position: fixed;
-		top: 0;
-		left: 0;
-		color: #fff;
-		font-size: @base-font-size + .5em;
-		line-height: @header-height;
-		text-align: center;
-		.title {
-			width: 50%;
-			margin: 0 auto;
-		}
-		.header-left, .header-right{
-			width: 50px;
-			display: inline-block;
-			position: absolute;
-			top: 0;
-			font-weight: 100;
-		}
-		.header-left {
-			left: 0;
-		}
-		.header-right {
-			right: 0;
-		}
+		z-index: 1001;
 	}
 	.pulldown {
 		height: @header-height - 1px;

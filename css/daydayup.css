@@ -202,6 +202,7 @@ a {
   right: 0;
   z-index: 1;
   overflow: scroll;
+  font-family: "Microsoft YaHei";
 }
 #scroller {
   position: relative;
@@ -210,6 +211,8 @@ a {
 .current {
   z-index: 100 !important;
   display: block !important;
+  -webkit-transition: -webkit-transform 400ms;
+  -webkit-transform: translate3d(0, 0, 0) !important;
 }
 .current.out {
   -webkit-transition: -webkit-transform 400ms;
@@ -217,6 +220,7 @@ a {
 }
 .next {
   display: block !important;
+  -webkit-transition: -webkit-transform 400ms;
   -webkit-transform: translate3d(0, 100%, 0) !important;
 }
 .next.in {
@@ -224,7 +228,7 @@ a {
   -webkit-transform: translate3d(0, 0, 0) !important;
 }
 .sidebar {
-  z-index: 50 !important;
+  z-index: 99 !important;
   display: block !important;
   width: 60% !important;
 }
@@ -245,13 +249,50 @@ a {
 .sidebar .menu li i {
   margin: 0 15px;
 }
-.sidebar.show + .current {
-  -webkit-transition: -webkit-transform 400ms;
-  -webkit-transform: translate3d(60%, 0, 0);
+.sidebar.show,
+.sidebar.hide {
+  z-index: 100!important;
 }
-.sidebar.hide + .current {
-  -webkit-transition: -webkit-transform 400ms;
-  -webkit-transform: translate3d(0, 0, 0);
+.sidebar.show + .current,
+header.hide {
+  -webkit-transition: -webkit-transform 400ms !important;
+  -webkit-transform: translate3d(60%, 0, 0) !important;
+}
+.sidebar.hide + .current,
+header.show {
+  -webkit-transition: -webkit-transform 400ms !important;
+  -webkit-transform: translate3d(0, 0, 0) !important;
+}
+header {
+  background-color: #b5ffb5;
+  height: 50px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  color: #fff;
+  font-size: 1.5em;
+  line-height: 50px;
+  text-align: center;
+  z-index: 1000;
+}
+header .title {
+  width: 50%;
+  margin: 0 auto;
+}
+header .header-left,
+header .header-right {
+  width: 50px;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  font-weight: 100;
+}
+header .header-left {
+  left: 0;
+}
+header .header-right {
+  right: 0;
 }
 .view {
   position: absolute;
@@ -263,39 +304,11 @@ a {
   display: none;
   width: 100%;
   height: 100%;
-  font-family: "Microsoft YaHei";
   background-color: #fff;
   overflow: hidden;
 }
 .view header {
-  background-color: #b5ffb5;
-  height: 50px;
-  width: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  color: #fff;
-  font-size: 1.5em;
-  line-height: 50px;
-  text-align: center;
-}
-.view header .title {
-  width: 50%;
-  margin: 0 auto;
-}
-.view header .header-left,
-.view header .header-right {
-  width: 50px;
-  display: inline-block;
-  position: absolute;
-  top: 0;
-  font-weight: 100;
-}
-.view header .header-left {
-  left: 0;
-}
-.view header .header-right {
-  right: 0;
+  z-index: 1001;
 }
 .view .pulldown {
   height: 49px;

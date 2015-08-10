@@ -39,7 +39,7 @@ var createItemNode = function(id, obj) {
 	}
 	else {
 		dir = "in";
-		money = obj.amount;
+		money = "+"+obj.amount;
 	}
 	var str = '<div class="list-item show" id="'+id+'">'+
 				'<span class="list-icon '+obj.type+'" data-type="'+obj.type+'">'+
