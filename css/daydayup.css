@@ -20,6 +20,10 @@ ul {
 .hidden {
   display: none;
 }
+.f3 {
+  width: 33.3%;
+  float: left;
+}
 .hacker {
   color: #eaeaea;
   font-size: 1em;
@@ -338,6 +342,12 @@ header .header-right {
 .view .list-icon.income {
   background-color: #79FF79;
 }
+.view .money.out {
+  color: #FF2D2D;
+}
+.view .money.in {
+  color: #79FF79;
+}
 .view .content {
   margin: 0;
   padding: 0;
@@ -366,12 +376,6 @@ header .header-right {
 }
 .view .content .list-item .money {
   display: inline-block;
-}
-.view .content .list-item .money.out {
-  color: #FF2D2D;
-}
-.view .content .list-item .money.in {
-  color: #79FF79;
 }
 .view .content .list-item .time {
   display: inline-block;
@@ -504,4 +508,31 @@ header .header-right {
 .view .numberinput.in {
   -webkit-transition: -webkit-transform 400ms;
   -webkit-transform: translate3d(0, -320px, 0);
+}
+.view .summary {
+  width: 100%;
+  height: 80px;
+}
+.view .summary li {
+  list-style: none;
+  display: inline-block;
+  height: 100%;
+  margin: 0;
+}
+.view .summary li .summary-item {
+  height: 80%;
+  width: 100%;
+  margin: auto 0;
+  text-align: center;
+  border-left: 1px solid #aaaaaa;
+}
+.view .summary li .summary-item .item-name {
+  color: #777777;
+}
+.view .summary li .summary-item .money:before {
+  content: "￥";
+  font-weight: bold;
+}
+.view .summary li:first {
+  border-left: 0;
 }

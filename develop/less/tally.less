@@ -141,6 +141,12 @@ header {
 	.list-icon.income {
 		background-color: #79FF79;
 	}
+	.money.out {
+		color: #FF2D2D;
+	}
+	.money.in {
+		color: #79FF79;
+	}
 	.content {
 		margin: 0;
 		padding: 0;
@@ -167,12 +173,6 @@ header {
 			}
 			.money {
 				display: inline-block;
-			}
-			.money.out {
-				color: #FF2D2D;
-			}
-			.money.in {
-				color: #79FF79;
 			}
 			.time {
 				display: inline-block;
@@ -309,5 +309,32 @@ header {
 	.numberinput.in {
 		-webkit-transition: -webkit-transform 400ms;
 		-webkit-transform: translate3d(0,-@numberinput-height,0);
+	}
+	.summary {
+		width: 100%;
+		height: 80px;
+		li {
+			list-style: none;
+			display: inline-block;
+			height: 100%;
+			margin: 0;
+			.summary-item {
+				height: 80%;
+				width: 100%;
+				margin: auto 0;
+				text-align: center;
+				border-left: 1px solid @base-font-color + #888;
+				.item-name {
+					color: @base-font-color + #555;
+				}
+				.money:before {
+					content: "￥";
+					font-weight: bold;
+				}
+			}
+		}
+		li:first {
+			border-left: 0;
+		}
 	}
 }
