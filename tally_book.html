@@ -38,8 +38,7 @@
                         <li onclick="showView('.statistic')"><i class="fa fa-bar-chart"></i>分类统计</li>
                     </ul>
                 </div>
-                <div class="view current main">
-                    
+                <div class="view current main">             
                     <div class="pulldown">reload</div>
                     <ul class="content">
                         <li>
@@ -171,12 +170,16 @@
                             </div>
                         </li>
                     </ul>
+                    <div class="charts">
+                    </div>
                 </div> 
             </div>  
-        </div>  
+        </div> 
+
+        <script src="js/iscroll.js"></script> 
         <script src="js/hammer.min.js"></script>
-        <script src="js/iscroll.js"></script>
         <script src="js/daydayup-0.1.0.js"></script>  
+        <script src="js/echarts-all.js"></script>  
         <script>
         var myScroll;
         function loaded() {
